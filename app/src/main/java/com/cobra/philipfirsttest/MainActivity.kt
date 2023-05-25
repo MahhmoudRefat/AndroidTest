@@ -3,6 +3,7 @@ package com.cobra.philipfirsttest
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
+import androidx.constraintlayout.widget.ConstraintLayout
 
 //import kotlinx.android.synthetic.main.activity_main.*
 
@@ -10,7 +11,25 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        var rgMeet = findViewById<RadioGroup>(R.id.rgMeet)
+        var cltoast = findViewById<ConstraintLayout>(R.id.clToast)
+        var btnshowtoast = findViewById<Button>(R.id.btnShowToast)
+        btnshowtoast.setOnClickListener {
+         //   Toast.makeText(applicationContext,"help",Toast.LENGTH_LONG).show()
+            Toast(this).apply {
+                duration = Toast.LENGTH_LONG
+                view = layoutInflater.inflate(R.layout.custom_toast,cltoast)
+                show()
+            }
+        }
+
+
+    }
+}
+
+/*
+
+
+    var rgMeet = findViewById<RadioGroup>(R.id.rgMeet)
         var rbBeef = findViewById<RadioButton>(R.id.rbBeef)
         var rbChiken = findViewById<RadioButton>(R.id.rbChiken)
         var rbPork = findViewById<RadioButton>(R.id.rbPork)
@@ -19,34 +38,28 @@ class MainActivity : AppCompatActivity() {
         var cbSalad = findViewById<CheckBox>(R.id.cbSalad)
         var btnOrder = findViewById<Button>(R.id.btnOrder)
         var tvOrder = findViewById<TextView>(R.id.tvOrder)
+btnOrder.setOnClickListener {
+        val checkradiobuttonid = rgMeet.checkedRadioButtonId
+        val meat = findViewById<RadioButton>(checkradiobuttonid)
+        val cheese = cbCheese.isChecked
+        val onion = cbOnions.isChecked
+        val salad = cbSalad.isChecked
+        val orderString =
+            "You orderd a burger with \n " + "${meat.text}" +
+                    (if (cheese) "\ncheese" else "") +
+                    (if (onion) "\nonion" else "") +
+                    (if (salad) "\nsalad" else "")
+        tvOrder.text = orderString
 
-        btnOrder.setOnClickListener {
-            val checkradiobuttonid = rgMeet.checkedRadioButtonId
-            val meat = findViewById<RadioButton>(checkradiobuttonid)
-            val cheese = cbCheese.isChecked
-            val onion = cbOnions.isChecked
-            val salad = cbSalad.isChecked
-            val orderString =
-                "You orderd a burger with \n " + "${meat.text}" +
-                        (if (cheese) "\ncheese" else "") +
-                        (if (onion) "\nonion" else "") +
-                        (if (salad) "\nsalad" else "")
-            tvOrder.text = orderString
-
-        }
-
-
-        /*  var btnAddImage = findViewById<Button>(R.id.btnAddImage)
-          var ivGraps = findViewById<ImageView>(R.id.ivGraps)
-          btnAddImage.setOnClickListener {
-              ivGraps.setImageResource(R.drawable.grapes)
-          }
-  */
-
-    }
-}
+    }*/
 
 
+/*  var btnAddImage = findViewById<Button>(R.id.btnAddImage)
+  var ivGraps = findViewById<ImageView>(R.id.ivGraps)
+  btnAddImage.setOnClickListener {
+      ivGraps.setImageResource(R.drawable.grapes)
+  }
+*/
 /*
  summtion of two number
  var etFirstNumer = findViewById<EditText>(R.id.etFirstNumber)
