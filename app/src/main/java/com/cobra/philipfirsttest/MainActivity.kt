@@ -1,5 +1,6 @@
 package com.cobra.philipfirsttest
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
@@ -11,21 +12,28 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        var cltoast = findViewById<ConstraintLayout>(R.id.clToast)
-        var btnshowtoast = findViewById<Button>(R.id.btnShowToast)
-        btnshowtoast.setOnClickListener {
-         //   Toast.makeText(applicationContext,"help",Toast.LENGTH_LONG).show()
-            Toast(this).apply {
-                duration = Toast.LENGTH_LONG
-                view = layoutInflater.inflate(R.layout.custom_toast,cltoast)
-                show()
-            }
-        }
 
 
     }
-}
 
+
+}
+/* var btnshowtoast = findViewById<Button>(R.id.btnShowToast)
+       btnshowtoast.setOnClickListener {
+            Intent(this, SecondActivity::class.java).also {
+               startActivity(it)
+           }
+       }*/
+/*
+ var cltoast = findViewById<ConstraintLayout>(R.id.clToast)
+        var btnshowtoast = findViewById<Button>(R.id.btnShowToast)
+         btnshowtoast.setOnClickListener {
+       //   Toast.makeText(applicationContext,"help",Toast.LENGTH_LONG).show()
+          Toast(this).apply {
+              duration = Toast.LENGTH_LONG
+              view = layoutInflater.inflate(R.layout.custom_toast,cltoast)
+              show()
+          }*/
 /*
 
 
