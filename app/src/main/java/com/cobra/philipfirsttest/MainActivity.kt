@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
 import androidx.constraintlayout.widget.ConstraintLayout
+import java.util.*
 
 //import kotlinx.android.synthetic.main.activity_main.*
 
@@ -14,6 +15,15 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
+         fun sortList(list: List<Int>) {
+            for (i in 0..list.size - 1) {
+                for (j in 0..list.size-2) {
+                    if (list[j] > list[j + 1]) {
+                        Collections.swap(list, j, j + 1)
+                    }
+                }
+            }
+        }
     }
 
 
