@@ -1,5 +1,6 @@
 package com.cobra.philipfirsttest
 
+import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
@@ -16,13 +17,32 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        var button = findViewById<Button>(R.id.btnrequest)
-    button.setOnClickListener {
 
+        }
+
+/*
+ var button = findViewById<Button>(R.id.btnChoose)
+        var imPhoto = findViewById<ImageView>(R.id.imPhoto)
+        button.setOnClickListener {
+            Intent(Intent.ACTION_GET_CONTENT).also {
+                it.type = "image/*"
+                startActivityForResult(it,0)
+            }
+*/
+
+ */
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(resultCode == Activity.RESULT_OK && requestCode == 0 ) {
+            val uri = data?.data
+      //      imPhoto.setimageuri(uri)
+        }
     }
-
-    }
-
+    /*
+    *   button.setOnClickListener {
+                requestpermission()
+            }
+            * */
     private fun haswriteexternal() =
         ActivityCompat.checkSelfPermission(
             this,
@@ -52,8 +72,8 @@ class MainActivity : AppCompatActivity() {
         if (!loctionbackground()) {
             Permissiontorequest.add(android.Manifest.permission.ACCESS_COARSE_LOCATION)
         }
-        if (Permissiontorequest.isNotEmpty()){
-            ActivityCompat.requestPermissions(this,Permissiontorequest.toTypedArray(),0)
+        if (Permissiontorequest.isNotEmpty()) {
+            ActivityCompat.requestPermissions(this, Permissiontorequest.toTypedArray(), 0)
         }
     }
 
@@ -63,13 +83,13 @@ class MainActivity : AppCompatActivity() {
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-    if(requestCode == 0 &&  grantResults.isNotEmpty()){
-        for (i in grantResults.indices ){
-            if(grantResults[i] == PackageManager.PERMISSION_GRANTED){
-                Log.d("permissionRequest","${permissions[i] } granted.")
+        if (requestCode == 0 && grantResults.isNotEmpty()) {
+            for (i in grantResults.indices) {
+                if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
+                    Log.d("permissionRequest", "${permissions[i]} granted.")
+                }
             }
         }
-    }
     }
 }
 
