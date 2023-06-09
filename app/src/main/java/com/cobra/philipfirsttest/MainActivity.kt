@@ -42,14 +42,28 @@ class MainActivity : AppCompatActivity() {
             .setSingleChoiceItems(option, 0) { dialogInterface, i ->
                 Toast.makeText(this, "You choosed ${option[i]} ", Toast.LENGTH_LONG).show()
             }.setPositiveButton("accepted") { _, _ ->
-            Toast.makeText(this, "u accepted the single choice ! ", Toast.LENGTH_LONG).show()
-        }.setNegativeButton("rejected") { _, _ ->
-            Toast.makeText(this, "u decliend the single choice ! ", Toast.LENGTH_LONG).show()
-        }.create()
+                Toast.makeText(this, "u accepted the single choice ! ", Toast.LENGTH_LONG).show()
+            }.setNegativeButton("rejected") { _, _ ->
+                Toast.makeText(this, "u decliend the single choice ! ", Toast.LENGTH_LONG).show()
+            }.create()
         btnDialog2.setOnClickListener {
             singleChoice.show()
         }
-
+        val multiChoice = AlertDialog.Builder(this).setTitle("choose one of this option ")
+            .setMultiChoiceItems(option, booleanArrayOf(false, false, false)) { _, i, isChecked ->
+                if (isChecked) {
+                    Toast.makeText(this, "You choosed ${option[i]} ", Toast.LENGTH_LONG).show()
+                } else {
+                    Toast.makeText(this, "You unchoosed ${option[i]} ", Toast.LENGTH_LONG).show()
+                }
+            }.setPositiveButton("accepted") { _, _ ->
+                Toast.makeText(this, "u accepted the multi choice ! ", Toast.LENGTH_LONG).show()
+            }.setNegativeButton("rejected") { _, _ ->
+                Toast.makeText(this, "u decliend the multi choice ! ", Toast.LENGTH_LONG).show()
+            }.create()
+        btnDialog3.setOnClickListener {
+            multiChoice.show()
+        }
 
     }
 
