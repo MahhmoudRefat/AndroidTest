@@ -25,20 +25,33 @@ class MainActivity : AppCompatActivity() {
         var btnDialog2 = findViewById<Button>(R.id.btnDialog2)
         var btnDialog3 = findViewById<Button>(R.id.btnDialog3)
 
-    var startFirstDialog = AlertDialog.Builder(this)
-        .setTitle("add Contact ").setMessage("You added Mr Poob ! ")
-        .setIcon(R.drawable.ic_add_contact)
-        .setPositiveButton("yes"){_,_ ->
-            Toast.makeText(this,"u added Mr poob ! ",Toast.LENGTH_LONG).show()
-        }.setNegativeButton("No"){_,_ ->
-            Toast.makeText(this,"u didn't added Mr poob ! ",Toast.LENGTH_LONG).show()
-        }.create()
+        var startFirstDialog = AlertDialog.Builder(this)
+            .setTitle("add Contact ").setMessage("You added Mr Poob ! ")
+            .setIcon(R.drawable.ic_add_contact)
+            .setPositiveButton("yes") { _, _ ->
+                Toast.makeText(this, "u added Mr poob ! ", Toast.LENGTH_LONG).show()
+            }.setNegativeButton("No") { _, _ ->
+                Toast.makeText(this, "u didn't added Mr poob ! ", Toast.LENGTH_LONG).show()
+            }.create()
 
         btnDialog1.setOnClickListener {
             startFirstDialog.show()
         }
-    }
+        val option = arrayOf("First item ", "second item ", "third item ")
+        val singleChoice = AlertDialog.Builder(this).setTitle("choose one of this option ")
+            .setSingleChoiceItems(option, 0) { dialogInterface, i ->
+                Toast.makeText(this, "You choosed ${option[i]} ", Toast.LENGTH_LONG).show()
+            }.setPositiveButton("accepted") { _, _ ->
+            Toast.makeText(this, "u accepted the single choice ! ", Toast.LENGTH_LONG).show()
+        }.setNegativeButton("rejected") { _, _ ->
+            Toast.makeText(this, "u decliend the single choice ! ", Toast.LENGTH_LONG).show()
+        }.create()
+        btnDialog2.setOnClickListener {
+            singleChoice.show()
+        }
 
+
+    }
 
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -47,11 +60,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
-            R.id.miAddContact -> Toast.makeText(this,"You clicked add contact ",Toast.LENGTH_SHORT).show()
-            R.id.miFavourite -> Toast.makeText(this,"You clicked Favourite ",Toast.LENGTH_SHORT).show()
-            R.id.miSettign -> Toast.makeText(this,"You clicked Settign ",Toast.LENGTH_SHORT).show()
-            R.id.miFeedback -> Toast.makeText(this,"You clicked Feedback ",Toast.LENGTH_SHORT).show()
+        when (item.itemId) {
+            R.id.miAddContact -> Toast.makeText(
+                this,
+                "You clicked add contact ",
+                Toast.LENGTH_SHORT
+            ).show()
+            R.id.miFavourite -> Toast.makeText(this, "You clicked Favourite ", Toast.LENGTH_SHORT)
+                .show()
+            R.id.miSettign -> Toast.makeText(this, "You clicked Settign ", Toast.LENGTH_SHORT)
+                .show()
+            R.id.miFeedback -> Toast.makeText(this, "You clicked Feedback ", Toast.LENGTH_SHORT)
+                .show()
             R.id.miClose -> finish()
 
         }
