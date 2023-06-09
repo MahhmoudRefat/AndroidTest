@@ -6,6 +6,8 @@ import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.*
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
@@ -17,27 +19,44 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.app_bar_mnue, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.miAddContact -> Toast.makeText(this,"You clicked add contact ",Toast.LENGTH_SHORT).show()
+            R.id.miFavourite -> Toast.makeText(this,"You clicked Favourite ",Toast.LENGTH_SHORT).show()
+            R.id.miSettign -> Toast.makeText(this,"You clicked Settign ",Toast.LENGTH_SHORT).show()
+            R.id.miFeedback -> Toast.makeText(this,"You clicked Feedback ",Toast.LENGTH_SHORT).show()
+            R.id.miClose -> finish()
 
         }
+        return true
+    }
 
-/*
- var button = findViewById<Button>(R.id.btnChoose)
-        var imPhoto = findViewById<ImageView>(R.id.imPhoto)
-        button.setOnClickListener {
-            Intent(Intent.ACTION_GET_CONTENT).also {
-                it.type = "image/*"
-                startActivityForResult(it,0)
-            }
-*/
+    /*
+     var button = findViewById<Button>(R.id.btnChoose)
+            var imPhoto = findViewById<ImageView>(R.id.imPhoto)
+            button.setOnClickListener {
+                Intent(Intent.ACTION_GET_CONTENT).also {
+                    it.type = "image/*"
+                    startActivityForResult(it,0)
+                }
+    */
 
- */
+     */
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(resultCode == Activity.RESULT_OK && requestCode == 0 ) {
+        if (resultCode == Activity.RESULT_OK && requestCode == 0) {
             val uri = data?.data
-      //      imPhoto.setimageuri(uri)
+            //      imPhoto.setimageuri(uri)
         }
     }
+
     /*
     *   button.setOnClickListener {
                 requestpermission()
