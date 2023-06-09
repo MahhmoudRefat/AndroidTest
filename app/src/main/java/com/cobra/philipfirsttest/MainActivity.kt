@@ -1,6 +1,7 @@
 package com.cobra.philipfirsttest
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
@@ -19,7 +20,26 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        var btnDialog1 = findViewById<Button>(R.id.btnDialog1)
+        var btnDialog2 = findViewById<Button>(R.id.btnDialog2)
+        var btnDialog3 = findViewById<Button>(R.id.btnDialog3)
+
+    var startFirstDialog = AlertDialog.Builder(this)
+        .setTitle("add Contact ").setMessage("You added Mr Poob ! ")
+        .setIcon(R.drawable.ic_add_contact)
+        .setPositiveButton("yes"){_,_ ->
+            Toast.makeText(this,"u added Mr poob ! ",Toast.LENGTH_LONG).show()
+        }.setNegativeButton("No"){_,_ ->
+            Toast.makeText(this,"u didn't added Mr poob ! ",Toast.LENGTH_LONG).show()
+        }.create()
+
+        btnDialog1.setOnClickListener {
+            startFirstDialog.show()
+        }
     }
+
+
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.app_bar_mnue, menu)
