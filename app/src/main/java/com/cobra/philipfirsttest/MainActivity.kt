@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.*
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
@@ -20,7 +21,56 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        var spMonth = findViewById<Spinner>(R.id.spMonth)
+        spMonth.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                adapterview: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                Toast.makeText(
+                    this@MainActivity,
+                    "You selected ${adapterview?.getItemAtPosition(position).toString()}",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
 
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+
+        }
+
+    }
+
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.app_bar_mnue, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.miAddContact -> Toast.makeText(
+                this,
+                "You clicked add contact ",
+                Toast.LENGTH_SHORT
+            ).show()
+            R.id.miFavourite -> Toast.makeText(this, "You clicked Favourite ", Toast.LENGTH_SHORT)
+                .show()
+            R.id.miSettign -> Toast.makeText(this, "You clicked Settign ", Toast.LENGTH_SHORT)
+                .show()
+            R.id.miFeedback -> Toast.makeText(this, "You clicked Feedback ", Toast.LENGTH_SHORT)
+                .show()
+            R.id.miClose -> finish()
+
+        }
+        return true
+    }
+
+    /*
+    * Alert dialog
         var btnDialog1 = findViewById<Button>(R.id.btnDialog1)
         var btnDialog2 = findViewById<Button>(R.id.btnDialog2)
         var btnDialog3 = findViewById<Button>(R.id.btnDialog3)
@@ -64,34 +114,7 @@ class MainActivity : AppCompatActivity() {
         btnDialog3.setOnClickListener {
             multiChoice.show()
         }
-
-    }
-
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.app_bar_mnue, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.miAddContact -> Toast.makeText(
-                this,
-                "You clicked add contact ",
-                Toast.LENGTH_SHORT
-            ).show()
-            R.id.miFavourite -> Toast.makeText(this, "You clicked Favourite ", Toast.LENGTH_SHORT)
-                .show()
-            R.id.miSettign -> Toast.makeText(this, "You clicked Settign ", Toast.LENGTH_SHORT)
-                .show()
-            R.id.miFeedback -> Toast.makeText(this, "You clicked Feedback ", Toast.LENGTH_SHORT)
-                .show()
-            R.id.miClose -> finish()
-
-        }
-        return true
-    }
-
+    * */
     /*
      var button = findViewById<Button>(R.id.btnChoose)
             var imPhoto = findViewById<ImageView>(R.id.imPhoto)
