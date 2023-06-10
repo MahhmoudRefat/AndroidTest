@@ -22,6 +22,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         var spMonth = findViewById<Spinner>(R.id.spMonth)
+        var customlist = listOf("First","second","third","Fourth")
+        var adapter = ArrayAdapter<String>(this, com.google.android.material.R.layout.support_simple_spinner_dropdown_item,customlist)
+        spMonth.adapter = adapter
         spMonth.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 adapterview: AdapterView<*>?,
