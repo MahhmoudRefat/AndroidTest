@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.icu.text.CaseMap.Title
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -13,6 +14,8 @@ import android.view.View
 import android.widget.*
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import java.util.*
 
 //import kotlinx.android.synthetic.main.activity_main.*
@@ -21,30 +24,29 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        var spMonth = findViewById<Spinner>(R.id.spMonth)
-        var customlist = listOf("First","second","third","Fourth")
-        var adapter = ArrayAdapter<String>(this, com.google.android.material.R.layout.support_simple_spinner_dropdown_item,customlist)
-        spMonth.adapter = adapter
-        spMonth.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                adapterview: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                Toast.makeText(
-                    this@MainActivity,
-                    "You selected ${adapterview?.getItemAtPosition(position).toString()}",
-                    Toast.LENGTH_LONG
-                ).show()
-            }
+        var rvTodo = findViewById<RecyclerView>(R.id.rvTodo)
+        var btntodo = findViewById<Button>(R.id.btnTodo)
+        var ettodo = findViewById<EditText>(R.id.etTodo)
+        var todolist = mutableListOf(
+            Todo("follow the course ", false),
+            Todo("Learn how to speak Parseltongue ", false),
+            Todo("Discover a new planet and name it after yourself ", false),
+            Todo("Learn how to breathe underwater and explore the depths  ", false),
+            Todo("Find a leprechaun and ask for a pot of gold ", true),
+            Todo("Learn how to speak Parseltongue ", false),
+            Todo("Bake a cake that can grant wishes ", true),
 
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-                TODO("Not yet implemented")
-            }
+            )
+        var adapter = todoAdapter(todolist)
+        rvTodo.adapter = adapter
+        rvTodo.layoutManager = LinearLayoutManager(this)
 
+        btntodo.setOnClickListener {
+            val title = ettodo.text.toString()
+            val todo = Todo(title, false)
+            todolist.add(todo)
+            adapter.notifyItemInserted(todolist.size-1)
         }
-
     }
 
 
@@ -72,6 +74,32 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
+    /*
+    ******* spinner and custom one
+    *   var spMonth = findViewById<Spinner>(R.id.spMonth)
+        var customlist = listOf("First","second","third","Fourth")
+        var adapter = ArrayAdapter<String>(this, com.google.android.material.R.layout.support_simple_spinner_dropdown_item,customlist)
+        spMonth.adapter = adapter
+        spMonth.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                adapterview: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                Toast.makeText(
+                    this@MainActivity,
+                    "You selected ${adapterview?.getItemAtPosition(position).toString()}",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+
+        }
+    * */
     /*
     * Alert dialog
         var btnDialog1 = findViewById<Button>(R.id.btnDialog1)
