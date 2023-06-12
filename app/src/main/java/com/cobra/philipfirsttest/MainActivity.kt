@@ -24,29 +24,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        var rvTodo = findViewById<RecyclerView>(R.id.rvTodo)
-        var btntodo = findViewById<Button>(R.id.btnTodo)
-        var ettodo = findViewById<EditText>(R.id.etTodo)
-        var todolist = mutableListOf(
-            Todo("follow the course ", false),
-            Todo("Learn how to speak Parseltongue ", false),
-            Todo("Discover a new planet and name it after yourself ", false),
-            Todo("Learn how to breathe underwater and explore the depths  ", false),
-            Todo("Find a leprechaun and ask for a pot of gold ", true),
-            Todo("Learn how to speak Parseltongue ", false),
-            Todo("Bake a cake that can grant wishes ", true),
 
-            )
-        var adapter = todoAdapter(todolist)
-        rvTodo.adapter = adapter
-        rvTodo.layoutManager = LinearLayoutManager(this)
-
-        btntodo.setOnClickListener {
-            val title = ettodo.text.toString()
-            val todo = Todo(title, false)
-            todolist.add(todo)
-            adapter.notifyItemInserted(todolist.size-1)
-        }
     }
 
 
@@ -73,7 +51,32 @@ class MainActivity : AppCompatActivity() {
         }
         return true
     }
+/*
+********** Recycler View *******
+*  var rvTodo = findViewById<RecyclerView>(R.id.rvTodo)
+        var btntodo = findViewById<Button>(R.id.btnTodo)
+        var ettodo = findViewById<EditText>(R.id.etTodo)
+        var todolist = mutableListOf(
+            Todo("follow the course ", false),
+            Todo("Learn how to speak Parseltongue ", false),
+            Todo("Discover a new planet and name it after yourself ", false),
+            Todo("Learn how to breathe underwater and explore the depths  ", false),
+            Todo("Find a leprechaun and ask for a pot of gold ", true),
+            Todo("Learn how to speak Parseltongue ", false),
+            Todo("Bake a cake that can grant wishes ", true),
 
+            )
+        var adapter = todoAdapter(todolist)
+        rvTodo.adapter = adapter
+        rvTodo.layoutManager = LinearLayoutManager(this)
+
+        btntodo.setOnClickListener {
+            val title = ettodo.text.toString()
+            val todo = Todo(title, false)
+            todolist.add(todo)
+            adapter.notifyItemInserted(todolist.size-1)
+        }
+        * */
     /*
     ******* spinner and custom one
     *   var spMonth = findViewById<Spinner>(R.id.spMonth)
