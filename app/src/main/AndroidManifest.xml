@@ -15,11 +15,11 @@
         android:theme="@style/Theme.PhilipFirstTest"
         tools:targetApi="31">
         <activity
-            android:name=".ThirdActivity"
+            android:name="ui.ThirdActivity"
             android:exported="false" />
-        <activity android:name=".SecondActivity" />
+        <activity android:name="ui.SecondActivity" />
         <activity
-            android:name=".MainActivity"
+            android:name="ui.MainActivity"
             android:exported="true"
             android:splitName="Sec">
             <intent-filter>

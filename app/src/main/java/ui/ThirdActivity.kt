@@ -1,7 +1,8 @@
-package com.cobra.philipfirsttest
+package ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.cobra.philipfirsttest.R
 
 class ThirdActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

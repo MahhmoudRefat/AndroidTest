@@ -1,4 +1,4 @@
-package com.cobra.philipfirsttest
+package pojo
 
 data class Todo(
     val title: String,
